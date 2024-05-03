@@ -33,7 +33,7 @@ int main()
 		arr[i++] = atoi(buf);
 	
 	}while(1);
-	register int size = i;
+	register int size = i;//register used to store size in a local register to make code run faster
 	printf("\n Original Array :\n");
 	printArray(arr, size);
 	
