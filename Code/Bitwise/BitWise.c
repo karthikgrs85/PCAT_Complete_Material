@@ -1,4 +1,15 @@
 #include "BitWise.h"
+#include "PrintBits.h"
+#include <stdio.h>
+
+#define MAX_RANGE_SIZE 8 
+
+//LSB -> Least Significant Bit
+//MSB -> Most Significant bit
+
+//n is counted from LSB
+
+//10110
 
 //Bitwise operators compares the values of 2 operands bitwise
 
@@ -34,9 +45,23 @@ void setNthBit(unsigned char *a, int n)
 {
 
   (*a)|=(1<<(n-1)); 
+  //unsigned char result = a|(1<<(n-1);
 
 }
 
+void setNBits(unsigned char *a, int x, int y)
+{
+	
+	if(x<y || x>MAX_RANGE_SIZE || y>MAX_RANGE_SIZE)
+	{
+		printf("\n Invalid range....\n");	
+		return;
+	}
+	
+	unsigned char val = getValueForRange(*a, x, y);
+	(*a)|=(val);
+
+}
 
 
 
@@ -59,6 +84,20 @@ void resetNthBit(unsigned char *a, int n)
 }
 
 
+void resetNBits(unsigned char *a, int x, int y)
+{
+	
+	if(x<y || x>MAX_RANGE_SIZE || y>MAX_RANGE_SIZE)
+	{
+		printf("\n Invalid range....\n");	
+		return;
+	}
+	
+	unsigned char val = getValueForRange(*a, x, y);
+	(*a)&=~(val);
+
+}
+
 
 //Flip a nth bit, n = 1
 
@@ -70,7 +109,7 @@ void resetNthBit(unsigned char *a, int n)
 
 // 1100000
 
-
+//Flip and reset are same
 void flipNthBit(unsigned char *a, int n)
 
 {
@@ -80,6 +119,18 @@ void flipNthBit(unsigned char *a, int n)
 }
 
 
+void flipNBits(unsigned char *a, int x, int y)
+{
+	
+	if(x<y || x>MAX_RANGE_SIZE || y>MAX_RANGE_SIZE)
+	{
+		printf("\n Invalid range....\n");	
+		return;
+	}
+	unsigned char val = getValueForRange(*a, x, y);
+	(*a)^=val;
+
+}
 //Test a nth bit, n = 1
 
 // a&(1<<(n-1)
@@ -114,3 +165,33 @@ bool testNthBit(unsigned char a, int n)
    
 
 }
+
+
+
+//For a range of bits    x...y
+//Get a binary number 00011111000
+//number = 1<<x-(1<<(y-1))
+//Perform the same operation |=(), &=~()
+//Example: a = 01100001
+//Set all bits from 3 to 5
+//number  = 00011100
+// =  (00100000)- (10)
+// =   00011100
+// 1<<5 -(1<<(3-1))
+
+//x is the start idx of the range
+//y is the end idx of the range
+unsigned char getValueForRange(unsigned char a, int x, int y)
+{
+	unsigned char val = '0';
+	if(x<y || x>MAX_RANGE_SIZE || y>MAX_RANGE_SIZE)
+	{
+		printf("\n Invalid range....\n");	
+		return val;
+	}
+	
+	val = ((1<<x) -(1<<(y-1)));
+	//printAllBitsOfUnsignedChar(val);
+	return val;
+}
+
