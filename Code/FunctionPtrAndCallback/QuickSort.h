@@ -1,7 +1,12 @@
 #pragma once
+#include <stdbool.h>
 
-int partition_highpivot(int arr[], int low, int high);
+void swap(int *a, int *b);
 
-int partition_lowpivot(int arr[], int low, int high);
+void printArr(int arr[], int size);
 
-void quickSort(int arr[], int low, int high);
+int partition_highpivot(int arr[], int low, int high, bool (*fn)(int, int));
+
+int partition_lowpivot(int arr[], int low, int high, bool (*fn)(int, int));
+
+void quickSort(int arr[], int low, int high,  bool (*fn)(int, int));
