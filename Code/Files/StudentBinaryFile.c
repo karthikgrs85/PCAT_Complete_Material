@@ -105,3 +105,20 @@ int readLastRecordFromBinaryFile(const char fName[])
 	return 1;
 	
 }
+
+int deleteRecordFromBinaryFile(const char fName[], int rollNo)
+{
+	Student **sArr= NULL;
+	int size = 0, index=-1;
+	readFromBinaryFile(&sArr, &size, fName);
+	if((index=getIndexForRollNo((const Student**)sArr, size, rollNo))==-1)
+	{
+		printf("\n Cannot delete record, no match found !...\n");
+		return -1;
+	
+	}
+	deleteIndexInDynArrOfStudents(sArr,&size,index);
+	printf("\n Student record successfully deleted !..\n");
+	return 1;
+
+}

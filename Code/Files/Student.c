@@ -158,3 +158,58 @@ int deleteDynArrOfStudents(Student ***sArr, int size)
 
 }
 
+void copy(Student source, Student *target)
+{
+	if(target->fName)
+		free(target->fName);
+	target->fName = (char*)calloc(strlen(source.fName)+1, sizeof(char));
+	strcpy(target->fName, source.fName);	
+		
+	if(target->lName)
+		free(target->lName);
+	target->lName = (char*)calloc(strlen(source.lName)+1, sizeof(char));
+	strcpy(target->lName, source.lName);
+	
+	target->rollno= source.rollno;
+	target->dt_joined = source.dt_joined;
+}
+
+int getIndexForRollNo(const Student **sArr,int size, int rollNo)
+{
+	for(int i = 0; i<size;++i)
+	{
+		if(sArr[i]!=NULL&&(sArr[i]->rollno==rollNo))
+		{
+			printf("\n Retrieved index %d for RollNo. %d\n",i,rollNo); 
+			return i;
+		
+		}
+	
+	
+	}
+
+	printf("\n Index with RollNo. %d not found !..\n",rollNo);
+	return -1;	
+
+}
+
+//sArr [0,1,..,n-1]
+//to delete index element
+//for(i = index to n-2)
+//copy(arr[i+1], arr[i])
+//free arr[n-1]
+//update size to n-1
+
+int deleteIndexInDynArrOfStudents(Student **sArr, int *size, int index)
+{
+	
+	for(int i = index; i<(*size)-1;++i)
+	{
+		copy(*sArr[i+1], sArr[i]);
+		
+	}
+	free(sArr[(*size)-1]);
+	(*size)--;
+	printf("\n Element with index %d successfully deleted \n",index);
+	return 1;
+}

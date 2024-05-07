@@ -3,15 +3,19 @@
 #include "Struct_SerializeDeserialize.h"
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
+#define TMP_BUF_MAX 5
 #define STRINGIZE(x) #x
 #define FILENAME STRINGIZE(StudentRecords.bin)
 
 #define INP_BUF_LEN 6
 int main()
 {
-	int choice, size=0, sizeF=0;
-	Student **sArr= NULL , **sFileArr=NULL;//Dynamic array of students
+	int choice, size=0, sizeF=0, rollNo =0, index = -1;
+	Student **sArr= NULL; //Local Array for data input by user
+	Student  **sFileArr=NULL;//Array containing elements read by file
+	char tmpBuf[TMP_BUF_MAX];
 	//Update last roll no. from binary file
 	readLastRecordFromBinaryFile(FILENAME);
 
@@ -23,14 +27,25 @@ int main()
 			"\n 3. Write the array to file "
 			"\n 4. Append the array to file "
 			"\n 5. Read from file "
-			"\n 6. Exit from program \n");
+			"\n 6. Get a particular student record from local array"
+			"\n 7. Get a particular student record from file"
+			"\n 8. Delete a student record from file"
+			"\n 9. Exit from program \n");
 		scanf("%d",&choice);
 		
-		if(choice <1 || choice > 6)
+		if(choice <1 || choice > 9)
 		{
 			printf("\n Invalid choice!...Try again...\n");
 			continue;
-		}	
+		}
+		else if(choice >=6 &&choice <=8)
+		{
+			getchar();
+			printf("\n Enter RollNo :");
+			fgets(tmpBuf,TMP_BUF_MAX, stdin); 
+			rollNo = atoi(tmpBuf);
+		
+		}
 		switch(choice)
 		{
 			case 1: initializeDynArrOfStudents(&sArr, &size);
@@ -53,12 +68,31 @@ int main()
 				sFileArr = NULL;
 				sizeF = 0;
 				break;
-			case 6:
+			case 6: 
+				if((index = getIndexForRollNo((const Student**)sArr, size, rollNo))!=-1)
+				{
+					printStudentDetails(*(sArr[index]));
+				}
+					
+				break;
+			case 7: readFromBinaryFile(&sFileArr, &sizeF, FILENAME);
+				if((index = getIndexForRollNo((const Student**)sFileArr, sizeF, rollNo))!=-1)
+				{
+					printStudentDetails(*(sFileArr[index]));
+				}
+				deleteDynArrOfStudents(&sFileArr, sizeF);
+				sFileArr = NULL;
+				sizeF = 0;
+				break;
+			case 8:
+				deleteRecordFromBinaryFile(FILENAME, rollNo);
+				break;
+			case 9:
 				break;
 					
 		
 		}
-	}while(choice != 6);
+	}while(choice != 9);
 
 
 }

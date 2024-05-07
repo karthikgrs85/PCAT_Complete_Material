@@ -41,6 +41,14 @@ void deleteStudent(Student *stu);
 
 int initializeDynArrOfStudents(Student ***sArr, int *size);
 
+void copy(Student source, Student *target);
+
+int getIndexForRollNo(const Student **sArr,int size, int rollNo);
+
+//int getIndexForFNameAndLName(const Student **sArr,int size, char fName[], char lName[]);
+
 int printDynArrOfStudents(const Student **sArr, int size);
+
+int deleteIndexInDynArrOfStudents(Student **sArr, int *size, int index);
 
 int deleteDynArrOfStudents(Student ***sArr, int size);
