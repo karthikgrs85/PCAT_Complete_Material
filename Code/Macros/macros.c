@@ -22,52 +22,7 @@ float getArea(float r)
 {
     return PI*r*r;
 }
-int strLen(const char*)
-{
-    
-}
-void calculate(const char *expression)
-{
-    char *operPos = NULL;
-    char operVal;
-    float x, y, result = 0;
-    int idx = 0;
-    while(operPos==NULL && idx < MAX_OPER)
-    {
-        operVal = oper[idx++];
-        operPos = strchr(expression,operVal);
 
-    }
-    if(operPos)
-    {
-        
-        x = atof(expression);
-        y = atof(operPos+1);
-        switch(operVal)
-        {
-            case '+':
-                result = x+y;
-                break;
-            case '-':
-                result = x-y;
-                break;
-            case '*':
-                result = x*y;
-                break;
-            case '/':
-                result = x/y;
-                break;
-            default:
-                printf("\n Operation Undefined!");
-                return;
-        }
-        //printf("\n The result of the expression is %.3f", result);
-        
-        return;
-    }
-    printf("\n No Valid operator found!");
-    return;
-}
 
 
 int main() {
