@@ -202,6 +202,11 @@ int getIndexForRollNo(const Student **sArr,int size, int rollNo)
 
 int deleteIndexInDynArrOfStudents(Student **sArr, int *size, int index)
 {
+	if(index<0||index>=(*size))
+	{
+		printf("\n Index = %d is invalid !...",index);
+		return -1;		
+	}
 	
 	for(int i = index; i<(*size)-1;++i)
 	{
