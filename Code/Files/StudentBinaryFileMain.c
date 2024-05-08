@@ -29,16 +29,17 @@ int main()
 			"\n 5. Read from file "
 			"\n 6. Get a particular student record from local array"
 			"\n 7. Get a particular student record from file"
-			"\n 8. Delete a student record from file"
-			"\n 9. Exit from program \n");
+			"\n 8. Delete a student record from local array"
+			"\n 9. Delete a student record from file"
+			"\n 10. Exit from program \n");
 		scanf("%d",&choice);
 		
-		if(choice <1 || choice > 9)
+		if(choice <1 || choice > 10)
 		{
 			printf("\n Invalid choice!...Try again...\n");
 			continue;
 		}
-		else if(choice >=6 &&choice <=8)
+		else if(choice >=6 &&choice <=9)
 		{
 			getchar();
 			printf("\n Enter RollNo :");
@@ -85,14 +86,21 @@ int main()
 				sizeF = 0;
 				break;
 			case 8:
+				if((index = getIndexForRollNo((const Student**)sArr, size, rollNo))!=-1)
+				{
+					deleteIndexInDynArrOfStudents(sArr, &size, index);
+				}
+				break;
+				
+			case 9:
 				deleteRecordFromBinaryFile(FILENAME, rollNo);
 				break;
-			case 9:
+			case 10:
 				break;
 					
 		
 		}
-	}while(choice != 9);
+	}while(choice != 10);
 
 
 }

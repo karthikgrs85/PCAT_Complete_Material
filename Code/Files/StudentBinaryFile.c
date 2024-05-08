@@ -118,6 +118,7 @@ int deleteRecordFromBinaryFile(const char fName[], int rollNo)
 	
 	}
 	deleteIndexInDynArrOfStudents(sArr,&size,index);
+	writeDynArrToBinaryFile((const Student**)sArr, size, fName);
 	printf("\n Student record successfully deleted !..\n");
 	return 1;
 
