@@ -42,10 +42,6 @@ int main() {
     printf("\n The area of the circle with r+2 is = %.2f\n",AREA(r+2));
     
     
-    //printf("\n Enter a mathematical expression :\n");
-    //scanf("%s",&expression);
-    //calculate(expression);
-    /*printf("%.3f",AREA(r+2));*/
     printf("\n Testing Concatenation macro : %d",JOINTWOWORDS(23,44));
     
     
