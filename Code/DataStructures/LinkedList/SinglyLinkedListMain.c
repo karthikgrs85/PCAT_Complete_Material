@@ -70,7 +70,7 @@ int main()
 	
 	}while(option!=5);
 
-
-	deleteAllNodesInSLL(&sll);
+	if(sll.head!=NULL)
+		deleteAllNodesInSLL(&sll);
 
 }

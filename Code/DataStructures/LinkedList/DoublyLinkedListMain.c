@@ -70,7 +70,7 @@ int main()
 	
 	}while(option!=5);
 
-
-	deleteAllNodesInDLL(&dll);
+	if(dll.head!=NULL)
+		deleteAllNodesInDLL(&dll);
 
 }
