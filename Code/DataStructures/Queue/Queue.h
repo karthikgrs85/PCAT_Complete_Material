@@ -19,6 +19,7 @@ void initQueue(Queue_String *Qs);
 int enqueue(Queue_String *Qs, const char buf[]);
 
 //Remove the first inserted element from the Queue
+//And decrement end
 char* dequeue(Queue_String *Qs);
 
 //Print the elements in the Queue
