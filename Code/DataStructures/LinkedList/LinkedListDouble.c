@@ -52,6 +52,8 @@ int insertNode_DLL(struct LinkedList_DLL *dll, const char buf[], int pos)
 	if(pos==1)
 	{
 		newNode->next = dll->head;
+		if(dll->head!=NULL)
+			dll->head->prev = newNode;
 		dll->head = newNode;
 		printf("\n New Node inserted at head successfully !..");
 		return 1;
