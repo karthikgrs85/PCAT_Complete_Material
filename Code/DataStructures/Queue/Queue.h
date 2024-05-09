@@ -6,7 +6,7 @@
 typedef struct
 {
 	char* buf[QUEUE_MAX];
-	int start, end;
+	int end;
 
 } Queue_String;
 
@@ -14,6 +14,8 @@ typedef struct
 void initQueue(Queue_String *Qs);
 
 //Add an element buf to the beginning of the Queue
+//Move remaining elements 1 step above and increment end
+//Newly inserted element should be copied to buf[0]
 int enqueue(Queue_String *Qs, const char buf[]);
 
 //Remove the first inserted element from the Queue
