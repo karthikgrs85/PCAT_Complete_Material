@@ -21,3 +21,6 @@ char* pop(Stack_string *Ss);
 
 //Print all the elements of the Stack
 void printAll(const Stack_string* Ss);
+
+//Initialize top to 0
+void initStack(Stack_string *Ss);
