@@ -10,6 +10,9 @@ typedef struct
 
 } Queue_String;
 
+//Initialize start and end to -1
+void initQueue(Queue_String *Qs);
+
 //Add an element buf to the beginning of the Queue
 int enqueue(Queue_String *Qs, const char buf[]);
 
